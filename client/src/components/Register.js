@@ -73,9 +73,13 @@ const Register = ({setAuth}) => {
                     value={name}
                     onChange={e => onChange(e)}
                 />
-                <button className="btn-success btn-block">Submit</button>
+                <button className="botsubmit">Submit</button>
             </form>
-            <Link to="/login">Login</Link>
+            <div className="googlelogin">
+            <button className="botreg">
+            <Link to="/" className="linkreg" style={{ textDecoration: 'none' }}>Login</Link>
+            </button>
+            </div>
     </Fragment>
     );
 };

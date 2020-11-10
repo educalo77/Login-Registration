@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import GoogleLogin from 'react-google-login';
 import { useDispatch } from "react-redux";
 import { getUser } from "../components/redux/useraction";
-
+import "./styles.css"
 
 const Login = ({ setAuth }) => {
     
@@ -85,16 +85,21 @@ const Login = ({ setAuth }) => {
                     value={password}
                     onChange={e => onChange(e)}
                 />
-            <button className="btn btn-success btn-block">Submit</button>
+            <button className="botsubmit">Submit</button>
             </form>
-            <Link to="/register">Register</Link>
+            <div className="googlelogin">
+            <button className="botreg">
+            <Link to="/register" className="linkreg" style={{ textDecoration: 'none' }}>Register</Link>
+            </button>
             <GoogleLogin
             clientId="274236062060-1vk0mne3n6li5bgj5lu4sruoa2agrp2l.apps.googleusercontent.com"
             buttonText="Login"
             onSuccess={responseGoogle}
             onFailure={responseGoogle}
             cookiePolicy={'single_host_origin'}
+            className="googlebot"
             />
+            </div>
     </Fragment>
     );
 };

@@ -1,6 +1,7 @@
 import React, { Fragment, useState, useEffect } from 'react'; 
 import { toast } from 'react-toastify';
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import "./styles.css"
 
 const Dashboard = ({ setAuth }) => {
 
@@ -34,7 +35,6 @@ const Dashboard = ({ setAuth }) => {
 
     useEffect(() => {
         getName();
-
     },[]);
 
     const logout = (e) => {
@@ -47,12 +47,17 @@ const Dashboard = ({ setAuth }) => {
     }
 
 
-
     return ( 
-    <Fragment>
-            <h1>Welcome {name}  !</h1>
+        <Fragment >
+            <div className="all">
+            <div className="h1img">
+            <h1 className="text">Welcome {name}  !</h1>
+            <img src={users.imageUrl} alt={users.imageUrl} className="imageProfile" />
+            </div>
+            <div className="botlogout">
             <button className="btn btn-primary" onClick={e => logout(e)}>Logout</button>
-
+            </div>
+            </div>
     </Fragment>
     );
 };
