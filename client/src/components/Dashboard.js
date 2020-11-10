@@ -30,12 +30,12 @@ const Dashboard = ({ setAuth }) => {
         e.preventDefault();
         localStorage.removeItem("token");
         setAuth(false);
-        toast.success("Logged out successfully");
+        toast.success("Logged out successfully!");
     }
 
     return ( 
     <Fragment>
-            <h1>Dashboard {name}</h1>
+            <h1>Welcome {name}!</h1>
             <button className="btn btn-primary" onClick={e => logout(e)}>Logout</button>
     </Fragment>
     );
