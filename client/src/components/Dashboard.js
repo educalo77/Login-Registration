@@ -55,7 +55,7 @@ const Dashboard = ({ setAuth }) => {
             <img src={users.imageUrl} alt={users.imageUrl} className="imageProfile" />
             </div>
             <div className="botlogout">
-            <button className="btn btn-primary" onClick={e => logout(e)}>Logout</button>
+            <button className="botreg" onClick={e => logout(e)}>Logout</button>
             </div>
             </div>
     </Fragment>
