@@ -11,6 +11,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import GoogleLogin from 'react-google-login';
 
 toast.configure();
 
@@ -52,13 +53,13 @@ function App() {
     <Switch>
       <Route
       exact
-      path="/login"
+      path="/"
       render = {
         props =>
         !isAuthenticated ? ( 
           <Login {...props} setAuth={setAuth} />
         ) : ( 
-          <Redirect to="/dashboard" />
+          <Redirect {...props} to="/dashboard" />
         )
       }
       />
@@ -69,7 +70,7 @@ function App() {
                 !isAuthenticated ? (
                   <Register {...props} setAuth={setAuth}/>
                 ) : (
-                    <Redirect to="/login" />
+                    <Redirect to="/" />
                   )
               }
             />
@@ -80,11 +81,13 @@ function App() {
                 isAuthenticated ? (
                   <Dashboard {...props} setAuth={setAuth}/>
                 ) : (
-                    <Redirect to="/login" />
+                    <Redirect to="/" />
                 )
               }
             />
-    </Switch>
+
+          </Switch>
+
     </div>
     </Router>
   </Fragment>

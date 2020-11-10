@@ -1,13 +1,18 @@
 import React, { Fragment, useState, useEffect } from 'react'; 
 import { toast } from 'react-toastify';
-
-
+import { useSelector, useDispatch } from "react-redux";
 
 const Dashboard = ({ setAuth }) => {
-    
-    const [name, setName] = useState("");
+
+    const [name, setName] = useState(sessionStorage.getItem('name') || "");
+
+    const userList = useSelector((state) => state.userList);
+    const { users } = userList;
+
+
 
     async function getName() {
+        if(localStorage.token){
         try {
             const response = await fetch("http://localhost:5000/dashboard/", {
                 method: "GET",
@@ -20,23 +25,34 @@ const Dashboard = ({ setAuth }) => {
         } catch (err) {
             console.error(err.message);
         }
+        }
+        if (users) {
+            setName(users.name);
+        }
+        
     }
 
     useEffect(() => {
         getName();
+
     },[]);
 
     const logout = (e) => {
         e.preventDefault();
         localStorage.removeItem("token");
+        sessionStorage.removeItem("name")
         setAuth(false);
         toast.success("Logged out successfully!");
+        window.location = "/"
     }
+
+
 
     return ( 
     <Fragment>
-            <h1>Welcome {name}!</h1>
+            <h1>Welcome {name}  !</h1>
             <button className="btn btn-primary" onClick={e => logout(e)}>Logout</button>
+
     </Fragment>
     );
 };

@@ -1,6 +1,10 @@
-import React, {Fragment, useState} from 'react'; 
+import React, {Fragment, useState, useEffect} from 'react'; 
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import GoogleLogin from 'react-google-login';
+import { useDispatch } from "react-redux";
+import { getUser } from "../components/redux/useraction";
+
 
 const Login = ({ setAuth }) => {
     
@@ -8,6 +12,8 @@ const Login = ({ setAuth }) => {
         email: "",
         password: ""
     });
+
+    const dispatch = useDispatch();
 
     const { email, password } = inputs;
 
@@ -43,6 +49,22 @@ const Login = ({ setAuth }) => {
         }
     }
 
+    const responseGoogle = (res) => {
+        const data = { 
+            name: res.profileObj.name,
+            imageUrl: res.profileObj.imageUrl,
+            email: res.profileObj.email
+        }
+        dispatch(getUser(data));
+        if (res.profileObj) {
+            setAuth(true);
+            toast.success("Login successfully!");
+         }
+        else {
+            toast.error("Login Error");
+        }
+    };
+
     return ( 
     <Fragment>
             <h1 className="text-center my-5">Login</h1>
@@ -66,6 +88,13 @@ const Login = ({ setAuth }) => {
             <button className="btn btn-success btn-block">Submit</button>
             </form>
             <Link to="/register">Register</Link>
+            <GoogleLogin
+            clientId="274236062060-1vk0mne3n6li5bgj5lu4sruoa2agrp2l.apps.googleusercontent.com"
+            buttonText="Login"
+            onSuccess={responseGoogle}
+            onFailure={responseGoogle}
+            cookiePolicy={'single_host_origin'}
+            />
     </Fragment>
     );
 };
