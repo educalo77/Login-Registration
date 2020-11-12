@@ -1,10 +1,10 @@
 {
-  "name": "Login-Registration",
+  "name": "login-registration",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently \"cd server && nodemon server \" \"cd client && npm run start\"",
+    "start": "concurrently \"cd server && nodemon server \" \"cd client && npm run start\""
   },
   "proxy": "http://localhost:5432/",
   "keywords": [],
