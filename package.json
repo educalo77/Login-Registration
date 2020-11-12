@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently \"cd server && nodemon server \" \"cd client && npm run start\""
+    "start": "concurrently \"cd server && nodemon server \" \"cd client && npm run start\"",
+    "now-build": "react-scripts build && mv build dist"
   },
   "proxy": "http://localhost:5432/",
   "keywords": [],
