@@ -11,7 +11,6 @@ import Login from './components/Login';
 import Register from './components/Register';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import GoogleLogin from 'react-google-login';
 
 toast.configure();
 
